@@ -1,0 +1,138 @@
+@background-color: #0f1a48;
+@primary-color: #1677ff;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root,
+.root-app {
+  width: 100%;
+  height: 100%;
+}
+
+.common-background {
+  color: #fff;
+  background-color: @background-color;
+}
+
+.header {
+  padding: 10px 20px;
+}
+
+.footer {
+  padding: 20px;
+}
+
+@common-height: calc(100% - 166px);
+
+.common-layout {
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: @common-height;
+}
+
+// sort page css start
+.sort-index {
+
+  .sort-index-fire {
+    color: red;
+  }
+
+  .sort-index-like {
+    cursor: pointer;
+
+    .liked {
+      color: @primary-color;
+    }
+  }
+
+  &.mobile-site {
+    height: auto;
+    min-height: calc(100% - 166px);
+  }
+
+  .sort-mobile-add {
+    font-size: 30px;
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+    color: @background-color;
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  .sort-form-add {
+    width: calc(100% - 40px);
+    height: 60%;
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    box-shadow: 0px 4px 8px 4px @background-color;
+    transition: all .3s;
+
+    .form-add-title {
+      font-size: 20px;
+      font-weight: bold;
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: '';
+        width: 2px;
+        height: 20px;
+        left: -10px;
+        top: 50%;
+        transform: translate(0, -50%);
+        background-color: @background-color;
+      }
+    }
+  }
+}
+
+.add-img-upload {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .upload-clear {
+    font-size: 20px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    color: red;
+  }
+}
+
+// sort page css end
+
+// meet-room css start
+.meet-room {
+  video {
+    width: 200px;
+    height: 200px;
+    transform: rotateY(180deg);
+  }
+}
+
+// meet-room css end
+
+// baby css start 
+.pg-viewer-wrapper {
+  padding: 0;
+}
+
+.document-container {
+  max-width: 700px;
+  min-width: 335px;
+  width: auto !important;
+}
+
+// baby css end

@@ -1,0 +1,37 @@
+@background-color: #0f1a48;
+
+.modal_self {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    box-shadow: 0px 4px 8px 4px @background-color;
+    transition: all .3s;
+    z-index: 9999;
+
+    .modal_title {
+        font-size: 20px;
+        font-weight: bold;
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: '';
+            width: 2px;
+            height: 20px;
+            left: -10px;
+            top: 50%;
+            transform: translate(0, -50%);
+            background-color: @background-color;
+        }
+    }
+
+    .modal_footer {
+        width: 100%;
+        justify-content: center;
+    }
+}
