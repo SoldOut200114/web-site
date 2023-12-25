@@ -26,6 +26,7 @@
     "antd-mobile": "^5.32.4",
     "axios": "^1.5.1",
     "file-loader": "^6.2.0",
+    "jszip": "^3.10.1",
     "react": "^18.2.0",
     "react-doc-viewer": "^0.1.5",
     "react-dom": "^18.2.0",

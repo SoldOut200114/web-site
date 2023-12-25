@@ -37,7 +37,7 @@ const Baby = (props) => {
         >
           {openMenu ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </div>
-        <ShowWord selectKey={key} />
+        <ShowWord selectKey={key} setKey={setKey} />
       </Content>
     </Layout>
   );

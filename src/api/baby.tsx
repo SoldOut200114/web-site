@@ -15,7 +15,6 @@ export const getDoc = (params) => {
     url: "/api/getDoc",
     method: "get",
     params,
-    responseType: "blob",
   });
 };
 

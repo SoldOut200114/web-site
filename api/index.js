@@ -1,6 +1,8 @@
+const fs = require("fs");
 const express = require("express");
 const multiparty = require("multiparty");
-const fs = require("fs");
+const archiver = require("archiver");
+const compressing = require("compressing");
 
 const app = express();
 
@@ -173,11 +175,33 @@ app.get("/getDoc", (request, response) => {
     fs.readFile("./docs/data.json", "utf8", (err, data) => {
         if (err) return
         const url = data ? JSON.parse(data).find(item => item.key === request.query.key)?.url : '';
-        fs.readFile(`./${url}`, (err, doc) => {
-            if (err) return;
-            response.send(doc);
-        })
-        // response.send(url);
+        if (!url) {
+            response.status(400);
+            response.send('error')
+            return;
+        }
+
+        // const output = fs.createWriteStream('docs/archive.zip');
+        // const archive = archiver('zip', {
+        //     zlib: { level: 9 } // 设置压缩级别
+        // });
+        // archive.pipe(output)
+        // archive.file(`${url}`, { name: url });
+        // output.on('close', () => {
+        //     fs.readFile(`docs/archive.zip`, (err, doc) => {
+        //         if (err) return;
+        //         response.send(doc);
+        //         // fs.unlinkSync('docs/archive.zip');
+        //     })
+        // })
+        // archive.finalize();
+
+        // fs.readFile(`./${url}`, (err, doc) => {
+        //     if (err) return;
+        //     archiver
+        //     response.send(doc);
+        // })
+        response.send(url);
     });
 });
 

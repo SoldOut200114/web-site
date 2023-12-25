@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import FileViewer from "react-file-viewer";
+import JSZip from "jszip";
 import { Button, Empty, Space, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
@@ -10,7 +11,7 @@ import { addDoc, getDoc } from "@/api/baby";
 import styles from "../index.module.less";
 
 const ShowWord = (props) => {
-  const { selectKey } = props;
+  const { selectKey, setKey } = props;
 
   const [visible, setVisible] = useState(false);
   const [file, setFile] = useState("");
@@ -34,7 +35,7 @@ const ShowWord = (props) => {
     if (res.status === 200) {
       setFile("");
       setVisible(false);
-      setUrl(res.data?.url);
+      setUrl(res.data.url);
       return;
     }
     message.error("文档更新失败，请重试");
@@ -57,19 +58,34 @@ const ShowWord = (props) => {
     }
   };
 
+  const unzip = async (data) => {
+    const zipData = await JSZip.loadAsync(data);
+    const { files } = zipData;
+    Object.keys(files).map((filename) => {
+      if (!files[filename].dir && !filename.includes("__")) {
+        console.log(filename);
+        files[filename].async("blob").then((res) => {
+          const _url = URL.createObjectURL(new Blob([res]));
+          setUrl(_url);
+        });
+      }
+    });
+    return zipData.files;
+  };
+
   useEffect(() => {
     if (!selectKey) return;
     getDoc({ key: selectKey }).then((res) => {
-      if (res.status === 200 && res.data) {
-        const _url = URL.createObjectURL(
-          new Blob([res.data], {
-            type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          })
-        );
-        setUrl(_url);
-        // setUrl('./aa.docx.zip');
-        // setUrl(res.data);
+      // if (res?.status === 200 && res?.data) {
+      //   const _url = URL.createObjectURL(new Blob([res.data]));
+      //   unzip(res.data);
+      //   return;
+      // }
+      if (res?.status === 200 && res?.data) {
+        setUrl(res?.data);
+        return;
       }
+      message.error("还未上传文档");
     });
   }, [selectKey]);
 
