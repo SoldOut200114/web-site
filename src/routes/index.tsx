@@ -2,10 +2,11 @@ import ForumIndex from "@/pages/Forum";
 import SortIndex from "@/pages/Sort";
 import MeetRoom from "@/pages/MeetRoom";
 import Baby from "@/pages/Baby";
+import Study from "@/pages/Study";
 
 const routes = [
   {
-    path: "/",
+    path: "/sort",
     element: <SortIndex />,
   },
   {
@@ -19,6 +20,10 @@ const routes = [
   {
     path: "/baby",
     element: <Baby />,
+  },
+  {
+    path: "/study",
+    element: <Study />,
   },
 ];
 

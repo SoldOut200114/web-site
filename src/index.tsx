@@ -26,7 +26,7 @@ const App = () => {
   return (
     <div className="root-app">
       {/* {!firstPage && <Header />} */}
-      {firstPage && <Navigate to="/baby" replace={true} />}
+      {firstPage && <Navigate to="/study" replace={true} />}
       <GetRoutes />
       {/* {!firstPage && <Footer />} */}
     </div>
